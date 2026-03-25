@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .bg-pattern {
+            background: linear-gradient(135deg, #F0F7F4 0%, #E8F5E9 100%);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+        .cart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+            border-color: rgba(46, 125, 50, 0.2);
+        }
+        .quantity-btn {
+            transition: all 0.2s ease;
+        }
+        .quantity-btn:hover {
+            background: rgba(46, 125, 50, 0.1);
+        }
+        .remove-btn {
+            transition: all 0.2s ease;
+        }
+        .remove-btn:hover {
+            transform: scale(1.1);
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        .empty-cart-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#E8F5E9',
+                        'eco-beige': '#F5F5DC',
+                        'eco-offwhite': '#F0F7F4',
+                        'eco-dark': '#2E7D32',
+                        'eco-light': '#4CAF50',
+                        'eco-accent': '#81C784',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-eco-offwhite font-inter bg-pattern">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-eco-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-all duration-300">About</a>
+                    <a href="index.html#how-it-works" class="text-gray-600 hover:text-eco-dark transition-all duration-300">How it works</a>
+                    <a href="index.html#contact" class="text-gray-600 hover:text-eco-dark transition-all duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Content -->
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold gradient-text mb-8">Your Cart</h1>
+            
+            <!-- Cart Items -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <div id="cart-items" class="space-y-6">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                
+                <!-- Empty Cart Message -->
+                <div id="empty-cart-message" class="text-center py-12 hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 empty-cart-icon mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <p class="text-gray-600 text-xl mb-4">Your cart is empty</p>
+                    <a href="bakeries.html" class="inline-block gradient-button text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                        <span class="flex items-center">
+                            Continue Shopping
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-2xl font-bold text-eco-dark mb-4">Order Summary</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Subtotal</span>
+                        <span id="subtotal" class="font-semibold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Delivery</span>
+                        <span class="font-semibold">Free</span>
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between">
+                            <span class="text-xl font-bold">Total</span>
+                            <span id="total" class="text-xl font-bold text-eco-dark">$0.00</span>
+                        </div>
+                    </div>
+                    <button id="checkout-button" class="gradient-button text-white w-full py-3 rounded-full font-semibold hover:shadow-lg transition-all mt-6" onclick="window.location.href='checkout.html'">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg">
+        <div class="flex justify-around py-4">
+            <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-colors">About</a>
+            <a href="index.html#how-it-works" class="text-gray-600 hover:text-eco-dark transition-colors">How it works</a>
+            <a href="index.html#contact" class="text-gray-600 hover:text-eco-dark transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        const checkoutButton = document.getElementById('checkout-button');
+
+        // Initialize cart if it doesn't exist
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+            cart = [];
+        }
+
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                checkoutButton.disabled = true;
+                checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+                subtotalElement.textContent = '$0.00';
+                totalElement.textContent = '$0.00';
+                return;
+            }
+
+            emptyCartMessage.classList.add('hidden');
+            checkoutButton.disabled = false;
+            checkoutButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item flex items-center justify-between py-4 border-b slide-in';
+                cartItem.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <h3 class="font-semibold text-lg">${item.name}</h3>
+                            <p class="text-gray-600">${item.bakery}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center border rounded-full">
+                            <button class="quantity-btn px-3 py-1 hover:bg-eco-green" data-index="${index}" data-action="decrease">-</button>
+                            <span class="px-3">${item.quantity}</span>
+                            <button class="quantity-btn px-3 py-1 hover:bg-eco-green" data-index="${index}" data-action="increase">+</button>
+                        </div>
+                        <span class="font-semibold">$${itemTotal.toFixed(2)}</span>
+                        <button class="remove-btn text-red-500 hover:text-red-700" data-index="${index}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            totalElement.textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        // Event delegation for quantity buttons and remove buttons
+        cartItemsContainer.addEventListener('click', (e) => {
+            const target = e.target.closest('.remove-btn') || e.target.closest('.quantity-btn');
+            if (!target) return;
+
+            if (target.classList.contains('quantity-btn')) {
+                const index = parseInt(target.dataset.index);
+                const action = target.dataset.action;
+                
+                if (action === 'increase') {
+                    cart[index].quantity += 1;
+                } else if (action === 'decrease' && cart[index].quantity > 1) {
+                    cart[index].quantity -= 1;
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            } else if (target.classList.contains('remove-btn')) {
+                const index = parseInt(target.dataset.index);
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+        });
+
+        // Initialize cart display
+        updateCartDisplay();
+
+        // Listen for storage events to update cart when changed in other tabs
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'cart') {
+                cart = JSON.parse(e.newValue) || [];
+                updateCartDisplay();
+            }
+        });
+    </script>
+</body>
+</html> 

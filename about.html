@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            position: relative;
+            min-height: 100vh;
+        }
+        .bg-pattern {
+            background: linear-gradient(135deg, #F0F7F4 0%, #E8F5E9 100%);
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+        }
+        .bg-pattern::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232E7D32' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            animation: patternFloat 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes patternFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .gradient-button:hover::before {
+            left: 100%;
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(76, 175, 80, 0.1) 100%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.1);
+        }
+        .feature-icon {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .feature-icon:hover {
+            transform: scale(1.1);
+            background: rgba(76, 175, 80, 0.2);
+        }
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .hero-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .mission-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .impact-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#E8F5E9',
+                        'eco-beige': '#F5F5DC',
+                        'eco-offwhite': '#F0F7F4',
+                        'eco-dark': '#2E7D32',
+                        'eco-light': '#4CAF50',
+                        'eco-accent': '#81C784',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-eco-offwhite font-inter bg-pattern">
+    <!-- Navigation Bar -->
+    <nav class="nav-blur shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-eco-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="about.html" class="text-eco-dark font-semibold">About</a>
+                    <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300">How it works</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300">Contact</a>
+                    <a href="cart.html" class="relative text-gray-600 hover:text-eco-dark transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-eco-light text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Content -->
+    <div class="pt-24 pb-24 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Hero Section -->
+            <div class="hero-section text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Our Story</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    PocketBite was born from a simple idea: to connect people who love fresh, delicious food with local bakeries that have surplus items at the end of the day.
+                </p>
+            </div>
+
+            <!-- Mission Section -->
+            <div class="mission-section mb-12">
+                <h2 class="text-3xl font-bold text-eco-dark mb-6 text-center">Our Mission</h2>
+                <p class="text-gray-600 text-lg text-center max-w-3xl mx-auto mb-8">
+                    We're on a mission to reduce food waste while making high-quality bakery items more accessible to everyone. By connecting local bakeries with food lovers, we create a win-win situation for both businesses and consumers.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-eco-dark mb-2">Reduce Waste</h3>
+                        <p class="text-gray-600">Help local bakeries reduce food waste by connecting them with customers who appreciate their surplus items.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-eco-dark mb-2">Support Local</h3>
+                        <p class="text-gray-600">Support local bakeries by helping them generate additional revenue from items that would otherwise go to waste.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-eco-dark mb-2">Save Money</h3>
+                        <p class="text-gray-600">Enjoy high-quality bakery items at discounted prices while making a positive impact on your community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="impact-section">
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Our Impact</h2>
+                    <p class="text-gray-600 mb-6">
+                        Since our launch, we've helped local bakeries reduce food waste by thousands of pounds while providing affordable, delicious treats to our community.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-3xl font-bold text-eco-dark mr-4">1000+</span>
+                            <span class="text-gray-600">Pounds of food saved from waste</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-3xl font-bold text-eco-dark mr-4">50+</span>
+                            <span class="text-gray-600">Local bakeries partnered with</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-3xl font-bold text-eco-dark mr-4">5000+</span>
+                            <span class="text-gray-600">Happy customers served</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="impact-section">
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Join Our Mission</h2>
+                    <p class="text-gray-600 mb-6">
+                        Whether you're a bakery looking to reduce waste or a food lover looking for great deals, we'd love to have you join our community.
+                    </p>
+                    <div class="space-y-4">
+                        <a href="bakeries.html" class="block gradient-button text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all text-center">
+                            Shop Surprise Boxes
+                        </a>
+                        <a href="contact.html" class="block border-2 border-eco-light text-eco-dark px-6 py-3 rounded-full font-semibold hover:bg-eco-light hover:text-white transition-all text-center">
+                            Partner With Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 nav-blur shadow-lg z-50">
+        <div class="flex justify-around py-4">
+            <a href="about.html" class="text-eco-dark font-semibold">About</a>
+            <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-colors">How it works</a>
+            <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Listen for storage events to update cart count when cart changes in other tabs
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'cart') {
+                updateCartCount();
+            }
+        });
+    </script>
+</body>
+</html> 

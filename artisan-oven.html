@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Oven - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .bg-pattern {
+            background: linear-gradient(135deg, #F5F5DC 0%, #DEB887 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B4513' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            animation: patternFloat 20s linear infinite;
+        }
+        @keyframes patternFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .gradient-button:hover::before {
+            left: 100%;
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .bakery-box {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .bakery-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.1);
+        }
+        .quick-view-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(139, 69, 19, 0.1);
+            color: #8B4513;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .bakery-box:hover .quick-view-button {
+            opacity: 1;
+        }
+        .quick-view-button:hover {
+            background: rgba(139, 69, 19, 0.2);
+            transform: scale(1.05);
+        }
+        .bakery-description {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brown-light': '#F5F5DC',
+                        'brown-dark': '#8B4513',
+                        'brown-accent': '#A0522D',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brown-light font-inter">
+    <div class="bg-pattern"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="nav-blur shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-brown-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="about.html" class="text-gray-600 hover:text-brown-dark transition-all duration-300">About</a>
+                    <a href="how-it-works.html" class="text-gray-600 hover:text-brown-dark transition-all duration-300">How it works</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-brown-dark transition-all duration-300">Contact</a>
+                    <a href="bakeries.html" class="text-gray-600 hover:text-brown-dark transition-all duration-300">Back to Bakeries</a>
+                    <a href="cart.html" class="relative text-gray-600 hover:text-brown-dark transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-brown-dark text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bakery Content -->
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Bakery Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Artisan Oven</h1>
+                <p class="text-xl text-gray-600">Traditional baking at its finest</p>
+            </div>
+
+            <!-- Bakery Description -->
+            <div class="bakery-description mb-12">
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    At Artisan Oven, we take pride in preserving the art of traditional baking. Our master bakers 
+                    use time-honored techniques and the finest ingredients to create bread and pastries that 
+                    transport you back to simpler times. Each of our surprise boxes is carefully crafted to 
+                    showcase the authentic flavors and textures that have made our bakery a local favorite for 
+                    generations.
+                </p>
+            </div>
+
+            <!-- Surprise Boxes -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Morning Rescue Box -->
+                <div class="bakery-box">
+                    <button class="quick-view-button" onclick="showQuickView('Morning Rescue Box', 'Fresh morning bread saved from surplus', ['2 sourdough loaves', '4 baguettes', '6 croissants'], '$24.99')">
+                        Quick View
+                    </button>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-brown-dark mb-2">Morning Rescue Box</h3>
+                        <p class="text-gray-600">Fresh morning bread saved from surplus</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>2 sourdough loaves</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>4 baguettes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>6 croissants</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-brown-dark mb-4">$24.99</p>
+                        <button class="gradient-button text-white px-6 py-3 rounded-full font-semibold w-full" onclick="addToCart('Morning Rescue Box', 24.99)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Afternoon Surplus Box -->
+                <div class="bakery-box">
+                    <button class="quick-view-button" onclick="showQuickView('Afternoon Surplus Box', 'Afternoon treats saved from going to waste', ['4 artisan loaves', '6 pastries', 'Assorted breads'], '$39.99')">
+                        Quick View
+                    </button>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-brown-dark mb-2">Afternoon Surplus Box</h3>
+                        <p class="text-gray-600">Afternoon treats saved from going to waste</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>4 artisan loaves</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>6 pastries</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>Assorted breads</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-brown-dark mb-4">$39.99</p>
+                        <button class="gradient-button text-white px-6 py-3 rounded-full font-semibold w-full" onclick="addToCart('Afternoon Surplus Box', 39.99)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Evening Rescue Box -->
+                <div class="bakery-box">
+                    <button class="quick-view-button" onclick="showQuickView('Evening Rescue Box', 'Evening bread saved from surplus', ['2 large loaves', '8 pastries', '12 rolls'], '$49.99')">
+                        Quick View
+                    </button>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-brown-dark mb-2">Evening Rescue Box</h3>
+                        <p class="text-gray-600">Evening bread saved from surplus</p>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>2 large loaves</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>8 pastries</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-brown-dark mr-2">✓</span>
+                            <span>12 rolls</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-brown-dark mb-4">$49.99</p>
+                        <button class="gradient-button text-white px-6 py-3 rounded-full font-semibold w-full" onclick="addToCart('Evening Rescue Box', 49.99)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 nav-blur shadow-lg">
+        <div class="flex justify-around py-4">
+            <a href="about.html" class="text-gray-600 hover:text-brown-dark transition-colors">About</a>
+            <a href="how-it-works.html" class="text-gray-600 hover:text-brown-dark transition-colors">How it works</a>
+            <a href="contact.html" class="text-gray-600 hover:text-brown-dark transition-colors">Contact</a>
+            <a href="bakeries.html" class="text-gray-600 hover:text-brown-dark transition-colors">Bakeries</a>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 max-w-2xl w-full mx-4">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold gradient-text" id="modal-title"></h3>
+                <button class="text-gray-500 hover:text-gray-700" onclick="closeQuickView()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Add to cart function
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1,
+                    bakery: "Artisan Oven"
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'fixed top-4 right-4 bg-brown-dark text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-y-0 opacity-100';
+            successMessage.textContent = `${name} added to cart!`;
+            document.body.appendChild(successMessage);
+
+            setTimeout(() => {
+                successMessage.style.transform = 'translateY(-100%)';
+                successMessage.style.opacity = '0';
+                setTimeout(() => successMessage.remove(), 300);
+            }, 2000);
+        }
+
+        // Quick view functionality
+        function showQuickView(title, description, items, price) {
+            const modal = document.getElementById('quick-view-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+
+            modalTitle.textContent = title;
+            modalContent.innerHTML = `
+                <p class="text-gray-600">${description}</p>
+                <ul class="space-y-2">
+                    ${items.map(item => `<li class="flex items-center">
+                        <span class="text-brown-dark mr-2">✓</span>
+                        <span>${item}</span>
+                    </li>`).join('')}
+                </ul>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-2xl font-bold gradient-text">${price}</span>
+                    <button class="gradient-button text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all"
+                        onclick="addToCart('${title}', ${price.replace('$', '')}); closeQuickView()">
+                        Add to Cart
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeQuickView();
+            }
+        });
+    </script>
+</body>
+</html> 

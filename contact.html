@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .bg-pattern {
+            background: linear-gradient(135deg, #F0F7F4 0%, #E8F5E9 100%);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .contact-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#E8F5E9',
+                        'eco-beige': '#F5F5DC',
+                        'eco-offwhite': '#F0F7F4',
+                        'eco-dark': '#2E7D32',
+                        'eco-light': '#4CAF50',
+                        'eco-accent': '#81C784',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-eco-offwhite font-inter bg-pattern">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-eco-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-all duration-300">About</a>
+                    <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300">How it works</a>
+                    <a href="contact.html" class="text-eco-dark font-semibold">Contact</a>
+                    <a href="cart.html" class="relative text-gray-600 hover:text-eco-dark transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-eco-light text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Content -->
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold gradient-text mb-8 text-center">Contact Us</h1>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-sm p-6 contact-card">
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Send us a Message</h2>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-eco-light focus:ring-eco-light">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-eco-light focus:ring-eco-light">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <input type="text" id="subject" name="subject" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-eco-light focus:ring-eco-light">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-eco-light focus:ring-eco-light"></textarea>
+                        </div>
+                        <button type="submit" class="gradient-button text-white w-full py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm p-6 contact-card">
+                        <h2 class="text-2xl font-bold text-eco-dark mb-4">Get in Touch</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-eco-light mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold">Email</h3>
+                                    <p class="text-gray-600">hello@pocketbite.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-eco-light mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold">Phone</h3>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-eco-light mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold">Address</h3>
+                                    <p class="text-gray-600">123 Green Street<br>Eco City, EC 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm p-6 contact-card">
+                        <h2 class="text-2xl font-bold text-eco-dark mb-4">Business Hours</h2>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Monday - Friday</span>
+                                <span class="font-semibold">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Saturday</span>
+                                <span class="font-semibold">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Sunday</span>
+                                <span class="font-semibold">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg">
+        <div class="flex justify-around py-4">
+            <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-colors">About</a>
+            <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-colors">How it works</a>
+            <a href="contact.html" class="text-eco-dark font-semibold">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Listen for storage events to update cart count when cart changes in other tabs
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'cart') {
+                updateCartCount();
+            }
+        });
+    </script>
+</body>
+</html> 

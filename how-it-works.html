@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .bg-pattern {
+            background: linear-gradient(135deg, #F0F7F4 0%, #E8F5E9 100%);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .step-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.1);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#E8F5E9',
+                        'eco-beige': '#F5F5DC',
+                        'eco-offwhite': '#F0F7F4',
+                        'eco-dark': '#2E7D32',
+                        'eco-light': '#4CAF50',
+                        'eco-accent': '#81C784',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-eco-offwhite font-inter bg-pattern">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-eco-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-all duration-300">About</a>
+                    <a href="how-it-works.html" class="text-eco-dark font-semibold">How it works</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300">Contact</a>
+                    <a href="cart.html" class="relative text-gray-600 hover:text-eco-dark transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-eco-light text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- How it Works Content -->
+    <div class="pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold gradient-text mb-8 text-center">How PocketBite Works</h1>
+            
+            <!-- Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 step-card">
+                    <div class="step-number">1</div>
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Discover Bakeries</h2>
+                    <p class="text-gray-600 mb-4">Browse through our curated selection of local bakeries, each offering unique surprise boxes of fresh, delicious treats.</p>
+                    <a href="bakeries.html" class="inline-block gradient-button text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                        Explore Bakeries
+                    </a>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 step-card">
+                    <div class="step-number">2</div>
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Choose Your Box</h2>
+                    <p class="text-gray-600 mb-4">Select from a variety of surprise boxes, each containing a carefully curated selection of fresh bakery items at discounted prices.</p>
+                    <a href="bakeries.html" class="inline-block gradient-button text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                        View Boxes
+                    </a>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 step-card">
+                    <div class="step-number">3</div>
+                    <h2 class="text-2xl font-bold text-eco-dark mb-4">Enjoy & Save</h2>
+                    <p class="text-gray-600 mb-4">Pick up your surprise box and enjoy fresh, delicious treats while helping reduce food waste and supporting local businesses.</p>
+                    <a href="cart.html" class="inline-block gradient-button text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">
+                        Start Shopping
+                    </a>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="bg-white rounded-xl shadow-sm p-8">
+                <h2 class="text-3xl font-bold text-eco-dark mb-6 text-center">Why Choose PocketBite?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-eco-light mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-semibold text-eco-dark mb-2">Fresh & Timely</h3>
+                            <p class="text-gray-600">All items are freshly baked and available for same-day pickup, ensuring maximum freshness and quality.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-eco-light mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-semibold text-eco-dark mb-2">Great Value</h3>
+                            <p class="text-gray-600">Enjoy significant savings on high-quality bakery items while helping reduce food waste in your community.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-eco-light mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-semibold text-eco-dark mb-2">Support Local</h3>
+                            <p class="text-gray-600">Your purchase directly supports local bakeries and helps them reduce food waste while maintaining their business.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-eco-light mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-semibold text-eco-dark mb-2">Sustainable Choice</h3>
+                            <p class="text-gray-600">By choosing PocketBite, you're making an environmentally conscious decision that helps reduce food waste.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg">
+        <div class="flex justify-around py-4">
+            <a href="index.html#about" class="text-gray-600 hover:text-eco-dark transition-colors">About</a>
+            <a href="how-it-works.html" class="text-eco-dark font-semibold">How it works</a>
+            <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Listen for storage events to update cart count when cart changes in other tabs
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'cart') {
+                updateCartCount();
+            }
+        });
+    </script>
+</body>
+</html> 

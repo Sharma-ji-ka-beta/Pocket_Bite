@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Bakeries - PocketBite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .bg-pattern {
+            background: linear-gradient(135deg, #F0F7F4 0%, #E8F5E9 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232E7D32' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            animation: patternFloat 20s linear infinite;
+        }
+        @keyframes patternFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .bakery-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            border-radius: 1rem;
+        }
+        .bakery-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(76, 175, 80, 0.1) 100%);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .bakery-card:hover::before {
+            opacity: 1;
+        }
+        .bakery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.1);
+            border-color: rgba(46, 125, 50, 0.2);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .gradient-button:hover::before {
+            left: 100%;
+        }
+        .gradient-button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-icon {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .feature-icon:hover {
+            transform: scale(1.1);
+            background: rgba(76, 175, 80, 0.2);
+        }
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .page-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .main-content {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            min-height: 100vh;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#E8F5E9',
+                        'eco-beige': '#F5F5DC',
+                        'eco-offwhite': '#F0F7F4',
+                        'eco-dark': '#2E7D32',
+                        'eco-light': '#4CAF50',
+                        'eco-accent': '#81C784',
+                        'eco-warm': '#FFB74D',
+                        'eco-cool': '#64B5F6',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-eco-offwhite font-inter">
+    <div class="bg-pattern"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="nav-blur shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-eco-dark text-2xl font-bold hover:opacity-80 transition-opacity">PocketBite</a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="about.html" class="text-eco-dark font-semibold">About</a>
+                    <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300 hover:scale-105">How it works</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-all duration-300 hover:scale-105">Contact</a>
+                    <a href="cart.html" class="relative text-gray-600 hover:text-eco-dark transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-eco-light text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="page-header text-center">
+                <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4 fade-in">Discover Local Bakeries</h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto fade-in delay-1">Find your perfect surprise box from our partner bakeries</p>
+            </div>
+        </div>
+
+        <!-- Bakeries Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- The Artisan's Oven -->
+                <div class="bakery-card fade-in">
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-eco-dark mb-2">The Artisan's Oven</h3>
+                            <p class="text-gray-600">Traditional European baking</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Handcrafted sourdough</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>French pastries</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Organic ingredients</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="artisan-oven.html" class="inline-block gradient-button text-white px-6 py-3 rounded-full text-lg font-semibold 
+                                transition-all duration-300 transform hover:scale-105 
+                                hover:shadow-lg w-full">
+                                View Surprise Boxes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SweetDelights -->
+                <div class="bakery-card fade-in delay-1">
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-eco-dark mb-2">SweetDelights</h3>
+                            <p class="text-gray-600">Modern treats with a twist</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Gourmet cookies</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Mini cakes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Seasonal specials</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="sweetdelights.html" class="inline-block gradient-button text-white px-6 py-3 rounded-full text-lg font-semibold 
+                                transition-all duration-300 transform hover:scale-105 
+                                hover:shadow-lg w-full">
+                                View Surprise Boxes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Green Baker -->
+                <div class="bakery-card fade-in delay-2">
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-eco-dark mb-2">The Green Baker</h3>
+                            <p class="text-gray-600">100% plant-based delights</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Vegan pastries</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Gluten-free options</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="feature-icon mr-3">✓</span>
+                                <span>Zero-waste packaging</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="green-baker.html" class="inline-block gradient-button text-white px-6 py-3 rounded-full text-lg font-semibold 
+                                transition-all duration-300 transform hover:scale-105 
+                                hover:shadow-lg w-full">
+                                View Surprise Boxes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 nav-blur shadow-lg">
+        <div class="flex justify-around py-4">
+            <a href="about.html" class="text-eco-dark font-semibold">About</a>
+            <a href="how-it-works.html" class="text-gray-600 hover:text-eco-dark transition-colors">How it works</a>
+            <a href="contact.html" class="text-gray-600 hover:text-eco-dark transition-colors">Contact</a>
+            <a href="cart.html" class="relative text-gray-600 hover:text-eco-dark transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span id="mobile-cart-count" class="absolute -top-2 -right-2 bg-eco-light text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+            document.getElementById('mobile-cart-count').textContent = totalItems;
+        }
+
+        // Initialize cart count
+        updateCartCount();
+    </script>
+</body>
+</html> 
