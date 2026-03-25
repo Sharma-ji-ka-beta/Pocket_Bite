@@ -17,6 +17,6 @@ Backend: FastAPI
 Database: Supabase
 
 Team
-Deep Sharma — sharmadeep.061006@gmail.com
-Harshit Singh
-Rai Shreyansh — dhrurai108@gmail.com
+Deep Sharma - sharmadeep.061006@gmail.com
+Harshit Singh - harshitsingh2102007@gmail.com
+Rai Shreyansh - dhrurai108@gmail.com
